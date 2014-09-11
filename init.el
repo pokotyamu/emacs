@@ -1,4 +1,3 @@
-
 ;;railsの基本的な設定
 (autoload 'ruby-mode "ruby-mode"
   "Mode for editing ruby source files" t)
@@ -58,3 +57,9 @@
 (setq make-backup-files nil)
 ;;; 終了時にオートセーブファイルを消す
 (setq delete-auto-save-files t)
+
+;; 行番号表示
+(global-linum-mode t)
+(set-face-attribute 'linum nil
+                    :foreground "#800"
+                    :height 0.5)
