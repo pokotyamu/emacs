@@ -1,11 +1,3 @@
-;;railsの基本的な設定
-(autoload 'ruby-mode "ruby-mode"
-  "Mode for editing ruby source files" t)
-(add-to-list 'auto-mode-alist '("\\.rb$latex " . ruby-mode))
-(add-to-list 'auto-mode-alist '("Capfile$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
-
-
 ;; newline and indent
 (global-set-key "\C-m" 'newline-and-indent)
 
@@ -23,6 +15,12 @@
 ;(menu-bar-mode -1) ;;メニューバーを消す
 (tool-bar-mode 0) ;;ツールバーを表示しない
 (setq truncate-partial-width-windows nil) ;; ウインドウ分割時に画面外へ出る文章を折り返す
+
+;; 行番号表示
+(global-linum-mode t)
+(set-face-attribute 'linum nil
+                    :foreground "#800"
+                    :height 0.5)
 
 
 ;; Window 分割を画面サイズに従って計算する
@@ -58,8 +56,17 @@
 ;;; 終了時にオートセーブファイルを消す
 (setq delete-auto-save-files t)
 
-;; 行番号表示
-(global-linum-mode t)
-(set-face-attribute 'linum nil
-                    :foreground "#800"
-                    :height 0.5)
+;;ruby & railsの基本的な設定
+(autoload 'ruby-mode "ruby-mode"
+  "Mode for editing ruby source files" t)
+(add-to-list 'auto-mode-alist '("\\.rb$latex " . ruby-mode))
+(add-to-list 'auto-mode-alist '("Capfile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
+;;タブ幅の設定と、return後のインデント
+(add-hook 'ruby-mode-hook
+          '(lambda ()
+             (setq tab-width 2)
+             (setq ruby-indent-level tab-width)
+             (setq ruby-deep-indent-paren-style nil)
+             (define-key ruby-mode-map [return] 'ruby-reindent-then-newline-and-indent)))
+
