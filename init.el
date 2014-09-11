@@ -53,3 +53,8 @@
                     (split-window-horizontally)))
         (other-window 1))
 (global-set-key (kbd "C-t") 'other-window-or-split)
+
+;; バックアップファイルを作らないようにする
+(setq make-backup-files nil)
+;;; 終了時にオートセーブファイルを消す
+(setq delete-auto-save-files t)
