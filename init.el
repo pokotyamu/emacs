@@ -13,7 +13,7 @@
 
 ;; load-pathに追加するフォルダ
 ;; 2つ以上フォルダを指定する場合の引数 => (add-to-load-path "elisp" "xxx" "xxx")
-(add-to-load-path "elisp")
+(add-to-load-path "elisp" "yspel")
 
 
 ;; newline and indent
@@ -103,3 +103,26 @@
     ;;;   (define-key ruby-mode-map "\'" 'ruby-electric-matching-char)
     ;;;   (define-key ruby-mode-map "|" 'ruby-electric-bar)
     )
+
+;; run yatex mode when open .tex file
+(setq auto-mode-alist
+      (cons (cons "\\.tex$" 'yatex-mode) auto-mode-alist))
+(autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
+;; yatex load path
+(setq load-path (cons (expand-file-name
+                       "/Applications/Emacs.app/Contents/Resources/site-lisp/yatex")
+                      load-path))
+;; use utf-8 on yatex mode
+(setq YaTeX-kanji-code 4)
+
+;; run yspel
+(require 'yspel)
+
+;run with Japanese
+(setq-default ispell-program-name "aspell")
+(eval-after-load "ispell"
+    '(add-to-list 'ispell-skip-region-alist '("[^\000-\377]+")))
+
+;; run on specific mode
+(add-hook 'yatex-mode-hook
+          '(lambda () (flyspell-mode)))
