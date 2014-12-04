@@ -126,3 +126,10 @@
 ;; run on specific mode
 (add-hook 'yatex-mode-hook
           '(lambda () (flyspell-mode)))
+
+;;use Preview.app
+(setq dvi2-command "open -a Preview")
+(defvar YaTeX-dvi2-command-ext-alist
+    '(("xdvi" . ".dvi")
+          ("ghostview\\|gv" . ".ps")
+              ("acroread\\|pdf\\|Preview\\|open" . ".pdf")))
