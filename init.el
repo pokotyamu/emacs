@@ -77,7 +77,7 @@
 ;;markdown記法の設定
 (autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.rd\\'" . markdown-mode))
+;(add-to-list 'auto-mode-alist '("\\.rd\\'" . markdown-mode))
 
 ;;ruby & railsの基本的な設定
 (autoload 'ruby-mode "ruby-mode"
@@ -108,6 +108,15 @@
     ;;;   (define-key ruby-mode-map "\'" 'ruby-electric-matching-char)
     ;;;   (define-key ruby-mode-map "|" 'ruby-electric-bar)
     )
+
+
+;rd-mode
+
+(when (locate-library "rabbit-mode")
+(autoload 'rabbit-mode "rabbit-mode" "major mode for Rabbit" nil t)
+(add-to-list 'auto-mode-alist
+             '("\\.\\(rbt\\|rab\\)$" . rabbit-mode)))
+
 
 ;; run yatex mode when open .tex file
 (setq auto-mode-alist
