@@ -2,7 +2,7 @@
 ;; ------------------------------------------------------------------------
 ;; @ load-path
 
-;; load-pathの追加関数
+; load-pathの追加関数
 (defun add-to-load-path (&rest paths)
     (let (path)
           (dolist (path paths paths)
@@ -77,7 +77,6 @@
 ;;markdown記法の設定
 (autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-;(add-to-list 'auto-mode-alist '("\\.rd\\'" . markdown-mode))
 
 ;;ruby & railsの基本的な設定
 (autoload 'ruby-mode "ruby-mode"
@@ -109,13 +108,15 @@
     ;;;   (define-key ruby-mode-map "|" 'ruby-electric-bar)
     )
 
-
-;rd-mode
-
+;rabbit-mode
 (when (locate-library "rabbit-mode")
 (autoload 'rabbit-mode "rabbit-mode" "major mode for Rabbit" nil t)
 (add-to-list 'auto-mode-alist
              '("\\.\\(rbt\\|rab\\)$" . rabbit-mode)))
+
+(when (locate-library "rd-mode")
+(autoload 'rd-mode "rd-mode.el" "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.rd\\'" . rd-mode)))
 
 
 ;; run yatex mode when open .tex file
