@@ -5,7 +5,8 @@
 
 + Ruby-mode  
 + TeX-mode
-+ Markdown  
++ Markdown-mode
++ JavaCC-mode
 
 ## Ruby-mode
 
